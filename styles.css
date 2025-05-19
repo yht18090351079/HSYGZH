@@ -161,6 +161,7 @@ body {
     width: 100%;
     height: 140px;
     object-fit: cover;
+    object-position: top; /* 确保显示图片的顶部 */
 }
 
 .item-info {

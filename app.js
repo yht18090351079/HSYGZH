@@ -178,7 +178,7 @@ function renderContentList() {
         const listItem = document.createElement('div');
         listItem.className = 'list-item';
         listItem.innerHTML = `
-            <img class="item-image" src="${item.image}" alt="${item.title}">
+            <img class="item-image" src="${item.content}" alt="${item.title}">
             <div class="item-info">
                 <div class="item-title">${item.title}</div>
                 <div class="item-meta">

@@ -315,7 +315,6 @@ function renderContentTable() {
         const row = document.createElement('tr');
         row.innerHTML = `
             <td>${item.id}</td>
-            <td><img src="${item.image}" alt="${item.title}" class="table-image"></td>
             <td>${item.title}</td>
             <td><span class="table-tag tag-${item.type}">${item.type === 'advisory' ? '农事建议' : '气象报告'}</span></td>
             <td>${getRegionName(item.region)}</td>
