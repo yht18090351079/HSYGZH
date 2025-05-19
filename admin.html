@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>农事建议 | 气象报告 - 管理系统</title>
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+</head>
+<body>
+    <div class="admin-layout">
+        <!-- 左侧导航 -->
+        <div class="sidebar">
+            <div class="logo">
+                <h2>管理系统</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item active" data-page="content-page"><i class="bi bi-file-earmark-text"></i> 内容管理</li>
+                <li class="nav-item" data-page="dict-page"><i class="bi bi-book"></i> 字典管理</li>
+            </ul>
+            <div class="user-info">
+                <div class="user-avatar">
+                    <i class="bi bi-person-circle"></i>
+                </div>
+                <div class="user-name">管理员</div>
+            </div>
+        </div>
+
+        <!-- 主内容区域 - 内容管理页 -->
+        <div class="main-content page active" id="content-page">
+            <div class="content-header">
+                <h1>内容管理</h1>
+                <button class="btn btn-primary" id="add-content-btn">
+                    <i class="bi bi-plus"></i> 新增内容
+                </button>
+            </div>
+
+            <!-- 筛选区域 -->
+            <div class="filter-card">
+                <div class="filter-form">
+                    <div class="form-group">
+                        <label>内容类型</label>
+                        <select id="admin-type-filter">
+                            <option value="">全部类型</option>
+                            <option value="advisory">农事建议</option>
+                            <option value="weather">气象报告</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>地区</label>
+                        <select id="admin-region-filter">
+                            <option value="">全部地区</option>
+                            <option value="henan">河南</option>
+                            <option value="shandong">山东</option>
+                            <option value="hebei">河北</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>日期范围</label>
+                        <div class="date-range">
+                            <input type="date" id="date-start">
+                            <span>至</span>
+                            <input type="date" id="date-end">
+                        </div>
+                    </div>
+                    <div class="form-group" id="crop-filter-group">
+                        <label>作物</label>
+                        <select id="admin-crop-filter">
+                            <option value="">全部作物</option>
+                            <option value="wheat">小麦</option>
+                            <option value="corn">玉米</option>
+                            <option value="rice">水稻</option>
+                        </select>
+                    </div>
+                    <div class="form-group filter-actions">
+                        <button class="btn" id="reset-filter">重置</button>
+                        <button class="btn btn-primary" id="apply-filter">查询</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 内容列表 -->
+            <div class="content-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="5%">ID</th>
+                            <th width="30%">标题</th>
+                            <th width="10%">类型</th>
+                            <th width="10%">地区</th>
+                            <th width="10%">作物</th>
+                            <th width="15%">日期</th>
+                            <th width="20%">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="content-table-body">
+                        <!-- JS动态生成 -->
+                    </tbody>
+                </table>
+                <div class="pagination">
+                    <button class="btn page-btn" data-page="prev"><i class="bi bi-chevron-left"></i></button>
+                    <div class="page-info">第 <span id="current-page">1</span> 页，共 <span id="total-pages">1</span> 页</div>
+                    <button class="btn page-btn" data-page="next"><i class="bi bi-chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 主内容区域 - 字典管理页 -->
+        <div class="main-content page" id="dict-page">
+            <div class="content-header">
+                <h1>字典管理</h1>
+            </div>
+            
+            <!-- 字典管理选项卡 -->
+            <div class="dict-tabs">
+                <div class="tab-header">
+                    <div class="tab active" data-tab="region-tab">地区管理</div>
+                    <div class="tab" data-tab="crop-tab">作物管理</div>
+                </div>
+                
+                <!-- 地区管理选项卡内容 -->
+                <div class="tab-content active" id="region-tab">
+                    <div class="dict-action-bar">
+                        <button class="btn btn-primary" id="add-region-btn">
+                            <i class="bi bi-plus"></i> 新增地区
+                        </button>
+                    </div>
+                    
+                    <div class="dict-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th width="10%">ID</th>
+                                    <th width="20%">代码</th>
+                                    <th width="40%">名称</th>
+                                    <th width="30%">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="region-table-body">
+                                <!-- JS动态生成 -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- 作物管理选项卡内容 -->
+                <div class="tab-content" id="crop-tab">
+                    <div class="dict-action-bar">
+                        <button class="btn btn-primary" id="add-crop-btn">
+                            <i class="bi bi-plus"></i> 新增作物
+                        </button>
+                    </div>
+                    
+                    <div class="dict-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th width="10%">ID</th>
+                                    <th width="20%">代码</th>
+                                    <th width="40%">名称</th>
+                                    <th width="30%">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="crop-table-body">
+                                <!-- JS动态生成 -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 内容编辑弹窗 -->
+        <div class="modal" id="content-modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 id="modal-title">新增内容</h3>
+                        <button class="close-btn" id="close-modal"><i class="bi bi-x"></i></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="content-form">
+                            <div class="form-group">
+                                <label for="title">标题</label>
+                                <input type="text" id="title" name="title" required placeholder="请输入内容标题">
+                            </div>
+                            <div class="form-group">
+                                <label for="type">内容类型</label>
+                                <div class="radio-group">
+                                    <label>
+                                        <input type="radio" name="type" value="advisory" checked> 农事建议
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="type" value="weather"> 气象报告
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="region">地区</label>
+                                <select id="region" name="region" required>
+                                    <option value="">请选择地区</option>
+                                    <!-- JS动态生成 -->
+                                </select>
+                            </div>
+                            <div class="form-group" id="crop-group">
+                                <label for="crop">作物类型</label>
+                                <select id="crop" name="crop">
+                                    <option value="">请选择作物</option>
+                                    <!-- JS动态生成 -->
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="date">日期</label>
+                                <input type="date" id="date" name="date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="content-image">内容长图上传</label>
+                                <div class="image-upload" id="content-image-upload">
+                                    <div class="upload-placeholder">
+                                        <i class="bi bi-cloud-arrow-up"></i>
+                                        <p>点击或拖拽上传图片</p>
+                                        <small>建议尺寸: 800 x 最大高度不限</small>
+                                    </div>
+                                    <div class="image-preview" id="image-preview" style="display: none">
+                                        <img id="preview-img" src="">
+                                        <div class="image-actions">
+                                            <button type="button" class="btn" id="change-image">更换图片</button>
+                                        </div>
+                                    </div>
+                                    <input type="file" id="image-file" accept="image/*" style="display: none">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn" id="cancel-btn">取消</button>
+                        <button class="btn btn-primary" id="save-btn">保存</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 地区编辑弹窗 -->
+        <div class="modal" id="region-modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 id="region-modal-title">新增地区</h3>
+                        <button class="close-btn" id="close-region-modal"><i class="bi bi-x"></i></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="region-form">
+                            <div class="form-group">
+                                <label for="region-code">地区代码</label>
+                                <input type="text" id="region-code" name="region-code" required placeholder="请输入地区代码，如：henan">
+                                <small class="form-text">用于系统内部标识，英文字母小写</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="region-name">地区名称</label>
+                                <input type="text" id="region-name" name="region-name" required placeholder="请输入地区名称，如：河南">
+                                <small class="form-text">显示给用户的地区名称</small>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn" id="cancel-region-btn">取消</button>
+                        <button class="btn btn-primary" id="save-region-btn">保存</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 作物编辑弹窗 -->
+        <div class="modal" id="crop-modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 id="crop-modal-title">新增作物</h3>
+                        <button class="close-btn" id="close-crop-modal"><i class="bi bi-x"></i></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="crop-form">
+                            <div class="form-group">
+                                <label for="crop-code">作物代码</label>
+                                <input type="text" id="crop-code" name="crop-code" required placeholder="请输入作物代码，如：wheat">
+                                <small class="form-text">用于系统内部标识，英文字母小写</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="crop-name">作物名称</label>
+                                <input type="text" id="crop-name" name="crop-name" required placeholder="请输入作物名称，如：小麦">
+                                <small class="form-text">显示给用户的作物名称</small>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn" id="cancel-crop-btn">取消</button>
+                        <button class="btn btn-primary" id="save-crop-btn">保存</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 内容预览弹窗 -->
+        <div class="modal" id="preview-modal">
+            <div class="modal-dialog preview-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 id="preview-title">内容预览</h3>
+                        <button class="close-btn" id="close-preview"><i class="bi bi-x"></i></button>
+                    </div>
+                    <div class="modal-body preview-body">
+                        <div class="preview-info">
+                            <div class="preview-meta">
+                                <div id="preview-region-date">河南 - 2023年6月</div>
+                                <div id="preview-type-crop">农事建议 - 小麦</div>
+                            </div>
+                        </div>
+                        <div class="preview-image-container">
+                            <img id="preview-content-img" src="" alt="内容预览">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="admin.js"></script>
+</body>
+</html> 
