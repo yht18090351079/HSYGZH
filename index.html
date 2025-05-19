@@ -3,75 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>农事建议 | 气象报告</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>汉盛源农业气象服务</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f5f8fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #2c6e49;
+            margin-bottom: 1rem;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #666;
+        }
+        
+        .nav-cards {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .nav-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .nav-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #2c6e49;
+        }
+        
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .card-desc {
+            color: #666;
+            font-size: 1rem;
+        }
+        
+        .footer {
+            margin-top: auto;
+            text-align: center;
+            padding-top: 2rem;
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-cards {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav-card {
+                width: 100%;
+                max-width: 350px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div id="app">
-        <!-- 内容详情页 -->
-        <div id="content-view" class="view active">
-            <div class="header">
-                <div class="location" id="current-location">加载中...</div>
-                <div class="date" id="current-date">2023年6月</div>
-            </div>
-            
-            <div class="content-container">
-                <img id="content-image" src="WechatIMG25.jpg" alt="农事建议内容">
-            </div>
-            
-            <div class="fixed-button" id="list-button">
-                <i class="bi bi-list"></i> 返回列表
-            </div>
+    <div class="container">
+        <div class="header">
+            <div class="logo">汉盛源农业气象服务</div>
+            <div class="subtitle">为农业提供专业的气象服务与农事建议</div>
         </div>
         
-        <!-- 列表页 -->
-        <div id="list-view" class="view">
-            <div class="filter-bar">
-                <div class="type-tabs">
-                    <div class="tab active" data-type="advisory">农事建议</div>
-                    <div class="tab" data-type="weather">气象报告</div>
-                </div>
-                
-                <div class="filters">
-                    <select id="region-filter" class="filter">
-                        <option value="">选择地区</option>
-                        <option value="henan">河南</option>
-                        <option value="shandong">山东</option>
-                        <option value="hebei">河北</option>
-                    </select>
-                    
-                    <select id="month-filter" class="filter">
-                        <option value="">选择月份</option>
-                        <option value="1">1月</option>
-                        <option value="2">2月</option>
-                        <option value="3">3月</option>
-                        <option value="4">4月</option>
-                        <option value="5">5月</option>
-                        <option value="6">6月</option>
-                        <option value="7">7月</option>
-                        <option value="8">8月</option>
-                        <option value="9">9月</option>
-                        <option value="10">10月</option>
-                        <option value="11">11月</option>
-                        <option value="12">12月</option>
-                    </select>
-                    
-                    <select id="crop-filter" class="filter">
-                        <option value="">选择作物</option>
-                        <option value="wheat">小麦</option>
-                        <option value="corn">玉米</option>
-                        <option value="rice">水稻</option>
-                    </select>
-                </div>
-            </div>
+        <div class="nav-cards">
+            <a href="index.html" class="nav-card" target="_blank">
+                <div class="card-icon"><i class="bi bi-cloud-sun"></i></div>
+                <div class="card-title">农事建议 | 气象报告</div>
+                <div class="card-desc">查看最新的农事建议和气象报告信息</div>
+            </a>
             
-            <div class="content-list" id="content-list">
-                <!-- 内容列表将通过JS动态生成 -->
-            </div>
+            <a href="admin.html" class="nav-card" target="_blank">
+                <div class="card-icon"><i class="bi bi-gear"></i></div>
+                <div class="card-title">管理系统</div>
+                <div class="card-desc">管理农事建议和气象报告内容</div>
+            </a>
+        </div>
+        
+        <div class="footer">
+            © 2023 汉盛源农业气象服务 版权所有
         </div>
     </div>
-
-    <script src="app.js"></script>
 </body>
 </html> 
