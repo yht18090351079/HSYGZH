@@ -1,0 +1,28 @@
+[
+  {
+    "id": 1,
+    "targetInfo": {
+      "selector": "div.container:nth-child(1)",
+      "width": 1200,
+      "height": 943.3333740234375,
+      "percentX": 36.064814249674484,
+      "percentY": 50.98939709388988
+    },
+    "title": "应用端",
+    "text": "应用端",
+    "direction": "right"
+  },
+  {
+    "id": 2,
+    "targetInfo": {
+      "selector": "div.container:nth-child(1)",
+      "width": 1200,
+      "height": 943.3333740234375,
+      "percentX": 63.89814758300781,
+      "percentY": 51.519432406716184
+    },
+    "title": "管理端",
+    "text": "管理端",
+    "direction": "left"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "id": 1,
+    "targetInfo": {
+      "selector": "#content-image",
+      "width": 730.0000610351562,
+      "height": 3762.916748046875,
+      "percentX": 89.05630542859176,
+      "percentY": 1.716310313816855
+    },
+    "title": "应用端首页",
+    "text": "一打开直接显示最新内容页（根据用户的定位）\n下方返回列表可返回列表页",
+    "direction": "left"
+  },
+  {
+    "id": 2,
+    "targetInfo": {
+      "selector": "div.tab:nth-child(2)",
+      "width": 365.0000305175781,
+      "height": 46.21527862548828,
+      "percentX": 7.3363582800160625,
+      "percentY": 54.094664672674284
+    },
+    "title": "可切换农事建议或者气象报告",
+    "text": "无内容",
+    "direction": "right"
+  }
+]
